@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WAD_Backend.Controllers
 {
@@ -34,11 +33,31 @@ namespace WAD_Backend.Controllers
             }
         }
 
-        // POST api/<LoginController>
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromQuery] string name, [FromQuery] string email, [FromQuery] string password)
         {
+            try
+            {
+                var newUser = new LoginUserModel
+                {
+                    Name = name,
+                    Email = email,
+                    Password = password
+                };
+
+                _context.LoginUser.Add(newUser);
+                _context.SaveChanges();
+
+                return Ok("User created successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error: {ex.Message}");
+            }
         }
+
+
 
         // PUT api/<LoginController>/5
         [HttpPut("{id}")]
