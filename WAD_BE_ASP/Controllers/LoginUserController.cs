@@ -16,6 +16,7 @@ namespace WAD_Backend.Controllers
             _context = context;
         }
 
+        
 
         [HttpGet]
         public IActionResult Get([FromQuery] string email, [FromQuery] string password)
@@ -46,7 +47,7 @@ namespace WAD_Backend.Controllers
                             
                             if (newHash.SequenceEqual(storedHash))
                             {
-                                return Ok("Login successful.");
+                                return Ok(user.isAdmin);
                             }
                             else
                             {
