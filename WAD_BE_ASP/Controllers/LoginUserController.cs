@@ -151,7 +151,6 @@ namespace WAD_Backend.Controllers
         {
             try
             {
-                // Generate a random salt
                 byte[] salt = new byte[16];
                 using (var rng = new RNGCryptoServiceProvider())
                 {

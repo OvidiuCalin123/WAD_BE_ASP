@@ -7,4 +7,5 @@ public class ApplicationDbContext : DbContext
     }
 
     public DbSet<LoginUserModel> LoginUser { get; set; }
+    public DbSet<JobPostingsModel> JobPostings { get; set; }
 }
